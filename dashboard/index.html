@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — Pre-token protocols, ranked by implied launch value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true">◉</span>
+    <div>
+      <h1>Token Radar</h1>
+      <p class="tagline">Pre-token protocols, ranked by implied launch value</p>
+    </div>
+  </div>
+  <dl class="meta" id="meta"></dl>
+</header>
+<main>
+  <section class="lede">
+    <p class="lede-text">Every protocol DefiLlama tracks that records <strong>no token</strong> — and is not a wrapped,
+    staked or bridged product of a token that already trades — scored by what its token would be worth
+    at launch, from the snapshot's own figures. Live-token protocols are kept apart: their market caps
+    are the market's own values, and they price the pre-token board.</p>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="spotlight" id="spotlight" aria-label="Top three by implied value"></section>
+
+  <nav class="tabs" aria-label="Views">
+    <button type="button" id="tab-board" data-tab="board" aria-selected="true">Board</button>
+    <button type="button" id="tab-live" data-tab="live" aria-selected="false">Live token</button>
+    <button type="button" id="tab-method" data-tab="method" aria-selected="false">Methodology</button>
+  </nav>
+
+  <section id="view-board" class="view" aria-label="Ranked board">
+    <div class="controls">
+      <label class="ctl search">Search
+        <input type="search" id="f-q" placeholder="Protocol name or slug" autocomplete="off">
+      </label>
+      <label class="ctl">Category
+        <select id="f-category"></select>
+      </label>
+      <label class="ctl">Chain
+        <select id="f-chain"></select>
+      </label>
+      <label class="ctl">Implied value
+        <select id="f-min">
+          <option value="0">Any value</option>
+          <option value="10000000">At least $10M</option>
+          <option value="50000000">At least $50M</option>
+          <option value="100000000">At least $100M</option>
+        </select>
+      </label>
+      <label class="ctl check"><input type="checkbox" id="f-watchlist"> Watchlist only</label>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="table-wrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th data-sort="rank" aria-sort="ascending">Rank</th>
+            <th data-sort="name">Protocol</th>
+            <th data-sort="category">Category</th>
+            <th>Chains</th>
+            <th data-sort="tvl">TVL</th>
+            <th data-sort="change">7d</th>
+            <th data-sort="age">Age</th>
+            <th data-sort="implied">Implied value</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="board-body"></tbody>
+      </table>
+    </div>
+    <p class="note">Click a row for the protocol's model breakdown, its category's comparables, and its farm plan.
+    Implied value is a model, not a promise: it is what the token would be worth if it launched at the
+    same market-cap-to-TVL ratio as its live-token peers.</p>
+  </section>
+
+  <section id="view-live" class="view" hidden aria-label="Live-token protocols">
+    <p class="lede-text">These protocols already trade, so they are not ranked here. They are the comparables:
+    their market-cap-to-TVL ratios price the pre-token board, and their market caps are the values the
+    market itself assigned.</p>
+    <div class="table-wrap">
+      <table id="live">
+        <thead>
+          <tr><th>Protocol</th><th>Category</th><th>Chains</th><th>TVL</th><th>7d</th><th>Market cap</th><th>mcap / TVL</th></tr>
+        </thead>
+        <tbody id="live-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="view-method" class="view" hidden aria-label="Methodology">
+    <h2>How the ranking is built</h2>
+    <div id="method-body"></div>
+  </section>
+</main>
+
+<dialog id="detail" aria-label="Protocol detail">
+  <div id="detail-body"></div>
+</dialog>
+
+<footer>
+  <p>Token Radar, model radar-2. All figures come from the sealed DefiLlama snapshot and the model's own
+  arithmetic; no live price, no outside feed, no network. The dashboard renders entirely from its own
+  files.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
